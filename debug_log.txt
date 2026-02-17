@@ -1,0 +1,11 @@
+
+  ================================================
+    JEE MAIN 2026 - OMNI-BYPASS (v5.5 PERFECT)
+  ================================================
+  [STATUS] FULL-SPECTRUM DOB SCAN ACTIVE
+  [RANGE] DYNAMIC HORIZON SHIFTING
+  [VERIFICATION] TRIPLE-DEEP CONFIRMATION
+  
+[32minfo[39m: 🔍 HUNTING BLOCK: 260310010000 -> 260310010499 {"timestamp":"2026-02-17T15:42:15.532Z"}
+[32minfo[39m: 🚨 SESSION RENEWED [Salt: BX83684576319556 | Captcha: qCfuT4] {"timestamp":"2026-02-17T15:42:16.134Z"}
+[ACTIVE HUNT] Testing: 260310010000 | DOBs: 0-15 | Total: 15[ACTIVE HUNT] Testing: 260310010000 | DOBs: 15-30 | Total: 30[ACTIVE HUNT] Testing: 260310010000 | DOBs: 30-45 | Total: 45[ACTIVE HUNT] Testing: 260310010000 | DOBs: 45-60 | Total: 60
