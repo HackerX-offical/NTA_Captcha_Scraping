@@ -1,7 +1,4 @@
-<link
-  href="/ResultoService26/Content/FaIcons/css/font-awesome.min.css"
-  rel="stylesheet"
-/>
+<link href="/ResultoService26/Content/FaIcons/css/font-awesome.min.css" rel="stylesheet" />
 
 <script src="/ResultoService26/Scripts/jquery-3.6.0.min.js"></script>
 
@@ -65,17 +62,17 @@
       }
     </style>
     <script type="text/javascript">
-      document.addEventListener("DOMContentLoaded", function () {
-        let passwordField = document.getElementById("txtPassword");
+      document.addEventListener('DOMContentLoaded', function () {
+        let passwordField = document.getElementById('txtPassword');
         if (passwordField) {
-          passwordField.addEventListener("copy", preventCopyPaste);
-          passwordField.addEventListener("paste", preventCopyPaste);
-          passwordField.addEventListener("cut", preventCopyPaste);
+          passwordField.addEventListener('copy', preventCopyPaste);
+          passwordField.addEventListener('paste', preventCopyPaste);
+          passwordField.addEventListener('cut', preventCopyPaste);
         }
       });
       function preventCopyPaste(event) {
         event.preventDefault();
-        alert("Copy-paste is disabled for security reasons.");
+        alert('Copy-paste is disabled for security reasons.');
       }
     </script>
     <script type="text/javascript">
@@ -85,7 +82,7 @@
       }
       function burstCache() {
         if (!navigator.onLine) {
-          window.location = "../Home/Index";
+          window.location = '../Home/Index';
         }
       }
       history.go(1);
@@ -95,14 +92,14 @@
         function captcha() {
           // console.log("Captcha refresh function triggered.");
           $.ajax({
-            url: "/ResultoService26/JE26S1P1/ShowCaptchaImage",
+            url: '/ResultoService26/JE26S1P1/ShowCaptchaImage',
             cache: false,
             success: function (html) {
               //console.log("Captcha image loaded successfully.");
-              var img = document.getElementById("capimage");
-              img.src = ""; // Clear the current image
-              img.src = "../JE26S1P1/ShowCaptchaImage?" + new Date().getTime(); // Force refresh
-              $("#Captcha1").val("");
+              var img = document.getElementById('capimage');
+              img.src = ''; // Clear the current image
+              img.src = '../JE26S1P1/ShowCaptchaImage?' + new Date().getTime(); // Force refresh
+              $('#Captcha1').val('');
             },
             error: function (response) {
               // alert('Failed to load captcha');
@@ -110,7 +107,7 @@
           });
         }
 
-        $("#captcha-refresh-btn").on("click", function () {
+        $('#captcha-refresh-btn').on('click', function () {
           captcha();
         });
       });
@@ -118,18 +115,18 @@
 
     <script type="text/javascript">
       function AdminLogin_ValidatorFun(salt) {
-        if (document.getElementById("txtPassword").value != "") {
-          document.getElementById("txtPassword").value = SHA256(
-            document.getElementById("txtPassword").value,
+        if (document.getElementById('txtPassword').value != '') {
+          document.getElementById('txtPassword').value = SHA256(
+            document.getElementById('txtPassword').value,
           ).toUpperCase();
-          document.getElementById("txtPassword").value = SHA256(
-            document.getElementById("txtPassword").value + salt,
+          document.getElementById('txtPassword').value = SHA256(
+            document.getElementById('txtPassword').value + salt,
           ).toUpperCase();
 
-          var len = document.getElementById("txtPassword").value.length;
+          var len = document.getElementById('txtPassword').value.length;
           if (len > 64 || len < 64) {
             alert(
-              "Operation can not be performed.Your browser is not supporting Password Encryption.",
+              'Operation can not be performed.Your browser is not supporting Password Encryption.',
             );
             return false;
           }
@@ -220,10 +217,7 @@
 
                   <div class="row mb-3">
                     <div class="col-lg-4 col-sm-4 text-end">
-                      <label
-                        class="control-label"
-                        for="Password"
-                        style="text-align: right"
+                      <label class="control-label" for="Password" style="text-align: right"
                         >Password :
                       </label>
                     </div>
@@ -251,11 +245,8 @@
                   </div>
                   <div class="row mb-3">
                     <div class="col-lg-4 col-sm-4 text-end">
-                      <label class="control-label" for="Captcha1" style=""
-                        >Enter CAPTCHA </label
-                      ><span class="text-success fw-bold"
-                        >(case sensitive)</span
-                      >
+                      <label class="control-label" for="Captcha1" style="">Enter CAPTCHA </label
+                      ><span class="text-success fw-bold">(case sensitive)</span>
                       :
                     </div>
                     <div class="col-lg-8 col-sm-8">
@@ -281,17 +272,12 @@
                   </div>
                   <div class="row mb-3">
                     <div class="col-lg-4 col-sm-4 text-end">
-                      <label class="control-label" for="Secpin" style=""
-                        >CAPTCHA :</label
-                      >
+                      <label class="control-label" for="Secpin" style="">CAPTCHA :</label>
                     </div>
                     <div class="col-lg-7 col-sm-7">
                       <p>
                         <img src="../JE26S1P1/ShowCaptchaImage" id="capimage" />
-                        <a
-                          class="btn btn-primary"
-                          id="captcha-refresh-btn"
-                          style="cursor: pointer"
+                        <a class="btn btn-primary" id="captcha-refresh-btn" style="cursor: pointer"
                           ><i class="fa fa-refresh"></i
                         ></a>
                       </p>
@@ -337,9 +323,8 @@
         <div class="row">
           <div class="col-lg-12">
             <p class="text-center mt-2">
-              This site is designed and hosted by NIC PEP Division. The contents
-              are provided by NTA. For any further information, please contact
-              NTA.
+              This site is designed and hosted by NIC PEP Division. The contents are provided by
+              NTA. For any further information, please contact NTA.
             </p>
           </div>
         </div>

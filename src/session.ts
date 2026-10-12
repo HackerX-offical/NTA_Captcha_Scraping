@@ -1,9 +1,9 @@
-import axios from "axios";
-import https from "https";
-import { createWorker, Worker } from "tesseract.js";
-import { CONFIG, HEADERS } from "./config";
-import { SessionData } from "./types";
-import { logger } from "./logger";
+import axios from 'axios';
+import https from 'https';
+import { createWorker, Worker } from 'tesseract.js';
+import { CONFIG, HEADERS } from './config';
+import { SessionData } from './types';
+import { logger } from './logger';
 
 export class SessionManager {
   private currentSession: SessionData | null = null;
@@ -16,7 +16,7 @@ export class SessionManager {
 
   private async getWorker() {
     if (!this.ocrWorker) {
-      this.ocrWorker = await createWorker("eng");
+      this.ocrWorker = await createWorker('eng');
     }
     return this.ocrWorker;
   }
@@ -27,10 +27,10 @@ export class SessionManager {
       const {
         data: { text },
       } = await worker.recognize(imageBuffer);
-      return text.replace(/[^A-Z0-9]/gi, "").substring(0, 6);
+      return text.replace(/[^A-Z0-9]/gi, '').substring(0, 6);
     } catch (error: any) {
       logger.error(`OCR Error: ${error.message}`);
-      return "XXXXXX";
+      return 'XXXXXX';
     }
   }
 
@@ -38,11 +38,7 @@ export class SessionManager {
     const REUSE_LIMIT = 5000;
 
     // Return existing session if valid
-    if (
-      !forceRefresh &&
-      this.currentSession &&
-      this.currentSession.usageCount < REUSE_LIMIT
-    ) {
+    if (!forceRefresh && this.currentSession && this.currentSession.usageCount < REUSE_LIMIT) {
       this.currentSession.usageCount++;
       return this.currentSession;
     }
@@ -60,31 +56,22 @@ export class SessionManager {
           headers: HEADERS,
           timeout: 10000,
         };
-        const loginPage = await axios.get(
-          `${CONFIG.baseUrl}${CONFIG.loginPath}`,
-          config1,
-        );
-        const cookies =
-          (loginPage.headers["set-cookie"] as string[])?.join("; ") || "";
+        const loginPage = await axios.get(`${CONFIG.baseUrl}${CONFIG.loginPath}`, config1);
+        const cookies = (loginPage.headers['set-cookie'] as string[])?.join('; ') || '';
 
         const saltMatch = String(loginPage.data).match(
           /AdminLogin_ValidatorFun\((?:&#39;|'|")([^&'"]+)(?:&#39;|'|")\)/,
         );
-        const salt = saltMatch ? saltMatch[1] : "";
+        const salt = saltMatch ? saltMatch[1] : '';
 
-        const captchaRes = await axios.get(
-          `${CONFIG.baseUrl}${CONFIG.captchaPath}`,
-          {
-            httpsAgent: this.agent,
-            headers: { ...HEADERS, Cookie: cookies },
-            responseType: "arraybuffer",
-            timeout: 10000,
-          },
-        );
+        const captchaRes = await axios.get(`${CONFIG.baseUrl}${CONFIG.captchaPath}`, {
+          httpsAgent: this.agent,
+          headers: { ...HEADERS, Cookie: cookies },
+          responseType: 'arraybuffer',
+          timeout: 10000,
+        });
 
-        const solvedCaptcha = await this.solveCaptcha(
-          Buffer.from(captchaRes.data),
-        );
+        const solvedCaptcha = await this.solveCaptcha(Buffer.from(captchaRes.data));
 
         this.currentSession = {
           cookies,
@@ -93,9 +80,7 @@ export class SessionManager {
           usageCount: 0,
         };
 
-        logger.info(
-          `🚨 SESSION RENEWED [Salt: ${salt} | Captcha: ${solvedCaptcha}]`,
-        );
+        logger.info(` SESSION RENEWED [Salt: ${salt} | Captcha: ${solvedCaptcha}]`);
         return this.currentSession;
       } catch (error: any) {
         logger.error(`Session Renewal Failed: ${error.message}`);
@@ -110,6 +95,6 @@ export class SessionManager {
   }
 
   get currentCaptchaValue(): string {
-    return this.currentSession?.captcha || "";
+    return this.currentSession?.captcha || '';
   }
 }
