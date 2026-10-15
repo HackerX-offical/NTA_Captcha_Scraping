@@ -29,5 +29,13 @@
     "prettier": "^3.6.2",
     "ts-jest": "^29.4.14"
   },
-  "license": "SEE LICENSE IN LICENSE"
+  "license": "SEE LICENSE IN LICENSE",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HackerX-official/NTA_Captcha_Scraping.git"
+  },
+  "homepage": "https://github.com/HackerX-official/NTA_Captcha_Scraping#readme",
+  "bugs": {
+    "url": "https://github.com/HackerX-official/NTA_Captcha_Scraping/issues"
+  }
 }
