@@ -16,7 +16,7 @@ authorized assessments and OCR experiments — not live exam disruption.
 ## Install
 
 ```bash
-git clone https://github.com/HackerX-offical/NTA_Captcha_Scraping.git
+git clone https://github.com/HackerX-official/NTA_Captcha_Scraping.git
 cd NTA_Captcha_Scraping
 npm install
 ```
